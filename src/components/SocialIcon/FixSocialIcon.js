@@ -1,5 +1,5 @@
 import React from "react";
-import { FaLinkedin, FaInstagram, FaGithub, FaTwitter } from "react-icons/fa";
+import { FaLinkedin, FaInstagram, FaGithub, FaTwitter, FaMedium, FaMediumM } from "react-icons/fa";
 import styled from "styled-components";
 
 const Social = styled.div`
@@ -14,7 +14,7 @@ const Social = styled.div`
   }
 
   .item + .item {
-    margin-top: 1rem;
+    margin-top: 0.2rem;
   }
 
   a {
@@ -59,6 +59,15 @@ function FixSocialIcon() {
             rel="noopener noreferrer"
           >
             <FaTwitter />
+          </a>
+        </li>
+        <li className="item">
+          <a
+            href="https://medium.com/@sehmbimanvir"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaMediumM />
           </a>
         </li>
         <li className="item">
