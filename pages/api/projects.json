@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Github Battle App",
-    "image": "https://i.imgur.com/yfvhmG7.png",
+    "image": "/assets/github-battle.png",
     "description": "A basic github battle app, to compare the profile status of two players",
     "tags": ["react", "redux"],
     "source_code": "https://github.com/sehmbimanvir/github-battle-app",
@@ -11,7 +11,7 @@
   {
     "id": 2,
     "name": "Vue JS - Todo App",
-    "image": "https://i.imgur.com/vW5u5zk.png",
+    "image": "/assets/vue-js-todo.png",
     "description": "A simple Todo app in Vue.js",
     "tags": ["vue.js", "vuex"],
     "source_code": "https://github.com/sehmbimanvir/vue-todo-app/",
@@ -20,7 +20,7 @@
   {
     "id": 3,
     "name": "Truecaller CLI App",
-    "image": "https://i.imgur.com/6OTTv6W.png",
+    "image": "/assets/truecaller-cli.png",
     "description": "A CLI app, unofficial API for truecaller to search mobile number details",
     "tags": ["node"],
     "source_code": "https://github.com/sehmbimanvir/truecaller-cli"
@@ -28,7 +28,7 @@
   {
     "id": 4,
     "name": "Torrent Search Engine",
-    "image": "https://i.imgur.com/Yy9kAHs.png",
+    "image": "/assets/torrent-engine.png",
     "description": "A themeable and developer-centric portfolio based on the VSCode",
     "tags": ["react", "node", "mongodb"],
     "source_code": "https://github.com/sehmbimanvir/react-torrent-search-engine",
