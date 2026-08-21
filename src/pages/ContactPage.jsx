@@ -10,19 +10,32 @@ const ContactPage = () => {
 
   const submitForm = async (e) => {
     e.preventDefault();
-    console.log(process.env.NEXT_PUBLIC_API_URL);
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contact`, {
-      method: 'POST',
-      body: JSON.stringify({ name, email, subject, message }),
-    });
-    if (res.ok) {
-      alert('Your response has been received!');
+    const apiUrl = import.meta.env.VITE_API_URL || '';
+    if (!apiUrl) {
+      alert('Message sent! (Mock submission since API URL is not set)');
       setName('');
       setEmail('');
       setSubject('');
       setMessage('');
-    } else {
-      alert('There was an error. Please try again in a while.');
+      return;
+    }
+    try {
+      const res = await fetch(`${apiUrl}/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, subject, message }),
+      });
+      if (res.ok) {
+        alert('Your response has been received!');
+        setName('');
+        setEmail('');
+        setSubject('');
+        setMessage('');
+      } else {
+        alert('There was an error. Please try again in a while.');
+      }
+    } catch {
+      alert('There was an error sending the message.');
     }
   };
 
@@ -60,7 +73,7 @@ const ContactPage = () => {
             </div>
           </div>
           <div>
-            <label htmlFor="name">Subject</label>
+            <label htmlFor="subject">Subject</label>
             <input
               type="text"
               name="subject"
@@ -87,11 +100,5 @@ const ContactPage = () => {
     </div>
   );
 };
-
-export async function getStaticProps() {
-  return {
-    props: { title: 'Contact' },
-  };
-}
 
 export default ContactPage;

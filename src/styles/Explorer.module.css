@@ -46,6 +46,7 @@
 
 .file p {
   margin-left: 5px;
+  color: #fff;
 }
 
 .file:hover {

@@ -1,5 +1,4 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { Link, useLocation } from 'react-router-dom';
 import FilesIcon from './icons/FilesIcon';
 import GithubIcon from './icons/GithubIcon';
 import CodeIcon from './icons/CodeIcon';
@@ -40,21 +39,21 @@ const sidebarBottomItems = [
 ];
 
 const Sidebar = () => {
-  const router = useRouter();
+  const location = useLocation();
 
   return (
     <aside className={styles.sidebar}>
       <div className={styles.sidebarTop}>
         {sidebarTopItems.map(({ Icon, path }) => (
-          <Link href={path} key={path}>
+          <Link to={path} key={path}>
             <div
               className={`${styles.iconContainer} ${
-                router.pathname === path && styles.active
+                location.pathname === path ? styles.active : ''
               }`}
             >
               <Icon
                 fill={
-                  router.pathname === path
+                  location.pathname === path
                     ? 'rgb(225, 228, 232)'
                     : 'rgb(106, 115, 125)'
                 }
@@ -66,11 +65,11 @@ const Sidebar = () => {
       </div>
       <div className={styles.sidebarBottom}>
         {sidebarBottomItems.map(({ Icon, path }) => (
-          <div className={styles.iconContainer}>
-            <Link href={path} key={path}>
+          <div className={styles.iconContainer} key={path}>
+            <Link to={path}>
               <Icon
                 fill={
-                  router.pathname === path
+                  location.pathname === path
                     ? 'rgb(225, 228, 232)'
                     : 'rgb(106, 115, 125)'
                 }

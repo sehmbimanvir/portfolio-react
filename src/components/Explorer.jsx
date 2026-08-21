@@ -1,7 +1,6 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import ChevronRight from '../components/icons/ChevronRight';
+import ChevronRight from './icons/ChevronRight';
 import styles from '../styles/Explorer.module.css';
 
 const explorerItems = [
@@ -58,9 +57,9 @@ const Explorer = () => {
           style={portfolioOpen ? { display: 'block' } : { display: 'none' }}
         >
           {explorerItems.map((item) => (
-            <Link href={item.path} key={item.name}>
+            <Link to={item.path} key={item.name}>
               <div className={styles.file}>
-                <Image
+                <img
                   src={`/${item.icon}`}
                   alt={item.name}
                   height={18}

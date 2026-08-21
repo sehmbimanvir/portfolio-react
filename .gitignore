@@ -13,6 +13,8 @@
 /out/
 
 # production
+/dist
+/dist-ssr
 /build
 
 # misc
