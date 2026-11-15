@@ -1,36 +1,197 @@
 [
   {
-    "id": 1,
-    "name": "Github Battle App",
-    "image": "/assets/github-battle.png",
-    "description": "A basic github battle app, to compare the profile status of two players",
-    "tags": [
-      "react",
-      "redux"
+    "id": "health-platform",
+    "featured": true,
+    "name": "Personal Health Data Platform",
+    "tagline": "A self-hosted pipeline that collects wearable data from WHOOP and Apple Health into Postgres, ready for dashboards, automations and LLMs.",
+    "problem": "Wearable data is spread across vendor apps that each show their own slice of it. I wanted it all in one database I own, so I could analyse it, automate around it, and later build AI tooling on top.",
+    "architecture": [
+      "Ingestion: wearable webhooks land on an edge worker that verifies each signature before anything reaches the private network. No home services are exposed to the internet.",
+      "Apple HealthKit data syncs in the background from a companion iOS app.",
+      "Processing: workflow automation reacts to ingestion events, and a Node.js service normalises sleep, recovery and workout data into Postgres.",
+      "Runs self-hosted as containerised stacks, reachable only over a private network.",
+      "Operations: TLS reverse proxy, monitoring, scheduled off-site backups, and a single alert channel. Dashboards sit on top."
     ],
-    "source_code": "https://github.com/sehmbimanvir/github-battle-app",
-    "demo": "https://github-battle.manvir.dev"
+    "outcome": "A pipeline that runs without manual work, keeps every metric in one schema I control, and backs up and alerts on its own. It is the data layer for the iOS app, the MCP servers and the automations below.",
+    "stack": [
+      "Node.js",
+      "GraphQL",
+      "Postgres",
+      "FastAPI",
+      "n8n",
+      "Docker",
+      "Cloudflare Workers",
+      "Grafana"
+    ],
+    "diagram": {
+      "stages": [
+        {
+          "title": "Sources",
+          "nodes": [
+            "Wearable cloud webhooks",
+            "Apple HealthKit (iOS app)"
+          ]
+        },
+        {
+          "title": "Edge",
+          "nodes": [
+            "Edge worker (signature check)",
+            "Private tunnel"
+          ]
+        },
+        {
+          "title": "Processing",
+          "nodes": [
+            "Ingestion service",
+            "Workflow automation",
+            "Metrics sync service"
+          ]
+        },
+        {
+          "title": "Storage",
+          "nodes": [
+            "Postgres"
+          ]
+        },
+        {
+          "title": "Consumers",
+          "nodes": [
+            "GraphQL API",
+            "Dashboards",
+            "MCP servers",
+            "Daily briefs"
+          ]
+        }
+      ],
+      "footer": "Ops: TLS proxy · private networking · monitoring · off-site backups · alerting"
+    },
+    "private": true
   },
   {
-    "id": 2,
-    "name": "Vue JS - Todo App",
-    "image": "/assets/vue-js-todo.png",
-    "description": "A simple Todo app in Vue.js",
-    "tags": [
-      "vue.js",
-      "vuex"
+    "id": "mcp-servers",
+    "featured": true,
+    "name": "MCP Servers over Health Data",
+    "tagline": "Secure, read-only tool access for LLMs to personal data.",
+    "problem": "LLMs are most useful when they can query real data, but personal health data is exactly the kind of data you can't paste into a chat or expose broadly. The goal was to let Claude answer questions over my data without giving it write access or exposing secrets.",
+    "architecture": [
+      "Postgres-backed MCP servers, one per data source.",
+      "Every request is authenticated at the edge by a zero-trust access gateway before it reaches the homelab.",
+      "The servers connect with a dedicated read-only database role. Tables holding credentials or configuration aren't granted to that role at all.",
+      "Each server offers schema search and SQL execution as tools, so the model can find the tables it needs before it queries."
     ],
-    "source_code": "https://github.com/sehmbimanvir/vue-todo-app/",
-    "demo": "https://vue-todo-app.manvir.dev/"
+    "outcome": "Claude can answer questions like \"how does my sleep change in high-strain training weeks?\" directly from the source data. Database permissions enforce the access boundary, so it doesn't depend on the prompt.",
+    "stack": [
+      "MCP",
+      "Postgres",
+      "Zero-trust access",
+      "Docker",
+      "LLM tool use"
+    ],
+    "diagram": {
+      "stages": [
+        {
+          "title": "Client",
+          "nodes": [
+            "Claude"
+          ]
+        },
+        {
+          "title": "Gateway",
+          "nodes": [
+            "Zero-trust access gateway"
+          ]
+        },
+        {
+          "title": "Tools",
+          "nodes": [
+            "MCP servers (one per source)"
+          ]
+        },
+        {
+          "title": "Data",
+          "nodes": [
+            "Postgres (read-only role)"
+          ]
+        }
+      ]
+    },
+    "private": true
   },
   {
-    "id": 3,
-    "name": "Truecaller CLI App",
+    "id": "apex-ios",
+    "featured": true,
+    "name": "APEX iOS App",
+    "tagline": "A native Swift app for live workout heart rate from a WHOOP strap.",
+    "problem": "The WHOOP app doesn't give me a live, workout-focused heart rate view or raw per-workout files. I wanted both, plus a reliable sync into Apple Health.",
+    "architecture": [
+      "Connects to the WHOOP strap during workouts for live heart rate on the phone, with haptic zone alerts.",
+      "Saves each workout as a local file and uploads it to the platform backend.",
+      "Writes heart rate samples to Apple Health through HealthKit.",
+      "Dashboards read from a read-only API. Tokens live in the iOS Keychain, and there are no secrets in the code."
+    ],
+    "outcome": "Live training data on my wrist and phone, with every workout archived alongside the rest of the platform's data.",
+    "stack": [
+      "Swift",
+      "HealthKit",
+      "GraphQL",
+      "Keychain"
+    ],
+    "diagram": {
+      "stages": [
+        {
+          "title": "Device",
+          "nodes": [
+            "WHOOP strap"
+          ]
+        },
+        {
+          "title": "App",
+          "nodes": [
+            "Live HR",
+            "Haptic alerts",
+            "Per-workout files"
+          ]
+        },
+        {
+          "title": "Destinations",
+          "nodes": [
+            "Apple Health",
+            "Platform backend"
+          ]
+        }
+      ]
+    },
+    "private": true
+  },
+  {
+    "id": "n8n-automations",
+    "featured": false,
+    "name": "n8n Automations",
+    "tagline": "A daily morning brief of recovery and sleep, delivered to my phone.",
+    "problem": "Opening three apps every morning to check recovery and sleep is friction I don't need.",
+    "architecture": [
+      "A scheduled n8n workflow reads the previous night's metrics and formats them as a short brief.",
+      "The brief is delivered to a private chat, the same channel the homelab uses for alerts."
+    ],
+    "outcome": "One message each morning with what matters. Next is an image-card version of the brief.",
+    "stack": [
+      "n8n",
+      "Postgres",
+      "Apprise"
+    ],
+    "private": true
+  },
+  {
+    "id": "truecaller-cli",
+    "featured": false,
+    "name": "Truecaller CLI",
+    "tagline": "A Node.js command-line tool for looking up mobile number details through Truecaller's unofficial API.",
     "image": "/assets/truecaller-cli.png",
-    "description": "A CLI app, unofficial API for truecaller to search mobile number details",
-    "tags": [
-      "node"
+    "stack": [
+      "Node.js",
+      "CLI"
     ],
+    "note": "Uses an unofficial API. Intended for looking up your own number or numbers you're entitled to look up; respect Truecaller's terms and local privacy laws.",
     "source_code": "https://github.com/sehmbimanvir/truecaller-cli"
   }
 ]

@@ -1,0 +1,48 @@
+.container {
+  max-width: 75ch;
+}
+
+.container > p {
+  margin-top: 1rem;
+  line-height: 1.7;
+  font-size: 0.9rem;
+}
+
+.skillsHeading {
+  margin-top: 2rem;
+}
+
+.code {
+  counter-reset: line;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  line-height: 1.9;
+}
+
+.line {
+  padding-left: 2.5rem;
+  text-indent: -2.5rem;
+}
+
+.line::before {
+  content: counter(line);
+  counter-increment: line;
+  display: inline-block;
+  width: 2.5rem;
+  text-indent: 0;
+  color: grey;
+}
+
+.keyword {
+  color: var(--accent-color);
+}
+
+.string {
+  color: rgb(206, 145, 120);
+}
+
+@media screen and (max-width: 600px) {
+  .code {
+    font-size: 0.75rem;
+  }
+}

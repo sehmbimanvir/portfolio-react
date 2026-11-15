@@ -1,0 +1,27 @@
+{
+  "name": "Manvir Singh",
+  "title": "Full Stack Developer → AI Engineer",
+  "location": "Abu Dhabi, UAE",
+  "experience_years": 10,
+  "roles": [
+    {
+      "role": "Full Stack Developer, Technical Authority",
+      "period": "Current",
+      "location": "Abu Dhabi, UAE",
+      "highlights": [
+        "Technical review and approval of releases before production",
+        "Assessing architecture, risk and operational readiness across teams"
+      ]
+    },
+    {
+      "role": "Full Stack Developer",
+      "period": "Earlier",
+      "highlights": [
+        "Built and shipped web applications with React, Vue, Node.js and Laravel",
+        "Owned features end to end, from API design to front end"
+      ]
+    }
+  ],
+  "focus": ["RAG", "LLM applications", "MCP", "Data pipelines", "Wearables & health data"],
+  "resume": null
+}

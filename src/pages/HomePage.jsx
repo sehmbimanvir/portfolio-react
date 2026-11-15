@@ -7,12 +7,12 @@ export default function HomePage() {
     <div className={styles.container}>
       <div className={styles.background}>
         <h1>I BUILD</h1>
-        <h1>WEBSITES</h1>
+        <h1>AI SYSTEMS</h1>
       </div>
       <div className={styles.foreground}>
         <div className={styles.content}>
           <h1 className={styles.name}>Manvir Singh</h1>
-          <h6 className={styles.bio}>Full Stack Web Developer</h6>
+          <h6 className={styles.bio}>Full Stack Developer → AI Engineer</h6>
           <Link to="/projects">
             <button className={styles.button}>View Work</button>
           </Link>

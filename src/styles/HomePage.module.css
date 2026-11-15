@@ -53,15 +53,15 @@
 
 .bio::before {
   background: var(--main-bg);
-  animation: typewriter 2.5s steps(24) 500ms forwards;
+  animation: typewriter 2.5s steps(34) 500ms forwards;
 }
 
 .bio::after {
   margin-left: 0.4rem;
   width: 0.125em;
   background: var(--accent-color);
-  animation: typewriter 2.5s steps(24) 500ms forwards,
-    blink 750ms steps(24) infinite;
+  animation: typewriter 2.5s steps(34) 500ms forwards,
+    blink 750ms steps(34) infinite;
 }
 
 @keyframes typewriter {
@@ -199,7 +199,7 @@
     font-size: 2rem;
   }
   .bio {
-    font-size: 1.25rem;
+    font-size: 0.95rem;
     margin-bottom: 2rem;
   }
   .button {

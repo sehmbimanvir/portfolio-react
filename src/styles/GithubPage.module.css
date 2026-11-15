@@ -56,3 +56,21 @@
     display: none;
   }
 }
+
+.username {
+  color: inherit;
+  text-decoration: none;
+}
+
+.username:hover {
+  text-decoration: underline;
+}
+
+.notice {
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+.notice a {
+  color: var(--accent-color);
+}

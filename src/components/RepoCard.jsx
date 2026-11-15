@@ -13,17 +13,21 @@ const RepoCard = ({ repo }) => {
         <p>{repo.description}</p>
       </div>
       <div className={styles.stats}>
-        <div>
+        {repo.stargazers_count !== undefined ? (
           <div>
-            <WatchIcon className={styles.icon} /> {repo.watchers}
+            <div>
+              <WatchIcon className={styles.icon} /> {repo.watchers}
+            </div>
+            <div>
+              <ForkIcon className={styles.icon} /> {repo.forks}
+            </div>
+            <div>
+              <StarIcon className={styles.icon} /> {repo.stargazers_count}
+            </div>
           </div>
-          <div>
-            <ForkIcon className={styles.icon} /> {repo.forks}
-          </div>
-          <div>
-            <StarIcon className={styles.icon} /> {repo.stargazers_count}
-          </div>
-        </div>
+        ) : (
+          <div />
+        )}
         <div>
           <a href={repo.html_url} target="_blank" rel="noopener noreferrer">
             <GithubIcon height={20} width={20} className={styles.icon} />

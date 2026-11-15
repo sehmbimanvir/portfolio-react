@@ -25,6 +25,11 @@ const explorerItems = [
     icon: 'js_icon.svg',
   },
   {
+    name: 'experience.json',
+    path: '/experience',
+    icon: 'json_icon.svg',
+  },
+  {
     name: 'github.md',
     path: '/github',
     icon: 'markdown_icon.svg',

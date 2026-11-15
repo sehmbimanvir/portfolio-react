@@ -2,7 +2,7 @@ import ErrorIcon from './icons/ErrorIcon';
 import WarningIcon from './icons/WarningIcon';
 import BellIcon from './icons/BellIcon';
 import CheckIcon from './icons/CheckIcon';
-import NextjsIcon from './icons/NextjsIcon';
+import ViteIcon from './icons/ViteIcon';
 import SourceControlIcon from './icons/SourceControlIcon';
 import styles from '../styles/Bottombar.module.css';
 
@@ -11,7 +11,7 @@ const Bottombar = () => {
     <footer className={styles.bottomBar}>
       <div className={styles.container}>
         <a
-          href="https://github.com/itsnitinr/vscode-portfolio"
+          href="https://github.com/sehmbimanvir"
           target="_blank"
           rel="noreferrer noopener"
           className={styles.section}
@@ -27,10 +27,24 @@ const Bottombar = () => {
         </div>
       </div>
       <div className={styles.container}>
-        <div className={styles.section}>
-          <NextjsIcon className={styles.icon} />
-          <p>Powered by Next.js</p>
-        </div>
+        <a
+          href="https://vitejs.dev"
+          target="_blank"
+          rel="noreferrer noopener"
+          className={styles.section}
+        >
+          <ViteIcon className={styles.icon} />
+          <p>Powered by Vite + React</p>
+        </a>
+        <a
+          href="https://github.com/itsnitinr/vscode-portfolio"
+          target="_blank"
+          rel="noreferrer noopener"
+          className={`${styles.section} ${styles.hideOnPhone}`}
+          title="Based on vscode-portfolio by Nitin Ranganath"
+        >
+          <p>Template by itsnitinr</p>
+        </a>
         <div className={styles.section}>
           <CheckIcon className={styles.icon} />
           <p>Prettier</p>

@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ContactPage from './pages/ContactPage';
+import ExperiencePage from './pages/ExperiencePage';
 import GithubPage from './pages/GithubPage';
 import SettingsPage from './pages/SettingsPage';
 import ForbiddenPage from './pages/ForbiddenPage';
@@ -17,6 +18,7 @@ const titles = {
   '/about': 'About',
   '/projects': 'Projects',
   '/contact': 'Contact',
+  '/experience': 'Experience',
   '/github': 'GitHub',
   '/settings': 'Settings',
   '/403': 'Access Denied',
@@ -52,6 +54,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/experience" element={<ExperiencePage />} />
         <Route path="/github" element={<GithubPage />} />
         <Route path="/settings" element={<SettingsPage />} />
       </Routes>

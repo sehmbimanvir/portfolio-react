@@ -21,16 +21,6 @@ const contactItems = [
     link: 'sehmbimanvir',
     href: 'https://www.linkedin.com/in/sehmbimanvir/',
   },
-  {
-    social: 'twitter',
-    link: 'sehmbimanvir',
-    href: 'https://www.twitter.com/sehmbimanvir',
-  },
-  {
-    social: 'instagram',
-    link: 'manvir.io',
-    href: 'https://www.instagram.com/manvir.io',
-  },
 ];
 
 const ContactCode = () => {
