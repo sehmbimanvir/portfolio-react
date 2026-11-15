@@ -8,6 +8,9 @@ import ProjectsPage from './pages/ProjectsPage';
 import ContactPage from './pages/ContactPage';
 import GithubPage from './pages/GithubPage';
 import SettingsPage from './pages/SettingsPage';
+import ForbiddenPage from './pages/ForbiddenPage';
+
+const standaloneRoutes = ['/403', '/forbidden'];
 
 const titles = {
   '/': 'Home',
@@ -16,6 +19,8 @@ const titles = {
   '/contact': 'Contact',
   '/github': 'GitHub',
   '/settings': 'Settings',
+  '/403': 'Access Denied',
+  '/forbidden': 'Access Denied',
 };
 
 function App() {
@@ -29,6 +34,15 @@ function App() {
   }, []);
 
   const currentTitle = titles[location.pathname] || 'Portfolio';
+
+  if (standaloneRoutes.includes(location.pathname)) {
+    return (
+      <>
+        <CustomHead title={`Manvir Singh | ${currentTitle}`} />
+        <ForbiddenPage />
+      </>
+    );
+  }
 
   return (
     <Layout>
